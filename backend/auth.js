@@ -1,6 +1,6 @@
 import express from 'express';
 import { db } from './db.js';
-import { verificarValidaciones } from './validaciones';
+import { verificarValidaciones } from './validaciones.js';
 import { body } from 'express-validator';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -32,22 +32,22 @@ export const verificarAutenticacion = passport.authenticate('jwt' , {
 
 router.post(
     '/login',
-    body('username').isAlphanumeric('es-ES').isLength({ max: 20 }),
-    body('password').isStrongPassword({
+    body('nombre', 'Nombre de usuario inválido').isAlphanumeric('es-ES').isLength({ max: 20 }),
+    body('contraseña', 'Contraseña inválida').isStrongPassword({
         minLength: 8, // Minimo de 8 caracteres
         minLowercase: 1, // Al menos una letra en minusculas
-        minUppercase: 0, // Letras mayusculas opcionales
+        minUppercase: 1, // Letras mayusculas opcionales
         minNumbers: 1, // Al menos un numero
-        minSymbols: 0, // Simbolos opcionales
+        minSymbols: 1, // Simbolos opcionales
     }),
     verificarValidaciones, 
     async (req, res) => {
-        const { username, password } = req.body;
+        const { nombre, contraseña } = req.body;
 
         // Consultar por el usuario a la base de datos
         const [usuarios] = await db.execute(
-            'SELECT * FROM usuarios WHERE username=?',
-            [username]
+            'SELECT * FROM usuario WHERE nombre=?',
+            [nombre]
         );
 
         if (usuarios.length === 0){
@@ -57,9 +57,9 @@ router.post(
         }
 
         // Verificar la contraseña
-        const hashedPassword = usuarios[0].password_hash;
+        const hashedPassword = usuarios[0].contraseña;
 
-        const passwordComparada = await bcrypt.compare(password, hashedPassword);
+        const passwordComparada = await bcrypt.compare(contraseña, hashedPassword);
 
         if(!passwordComparada) {
             return res
@@ -77,7 +77,7 @@ router.post(
         res.json({
             success: true,
             token,
-            username: usuarios[0].username
+            username: usuarios[0].nombre
         });
     }
 );

@@ -1,7 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import { conectarDB } from './db.js';
-import authRouter, { authConfig } from './auth.js';
+import usuariosRouter from './usuarios.js';
+import authRouter, { authConfig } from './auth.js'; 
 
 conectarDB();
 
@@ -16,9 +17,14 @@ app.use(cors());
 
 authConfig();
 
+// Ruta de bienvenida
 app.get('/', (req, res) => {
     res.send('Hola Mundo!');
 });
+
+// Rutas de la API
+app.use('/usuarios', usuariosRouter);
+app.use('/auth', authRouter);
 
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
