@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import { conectarDB } from './db';
+import { conectarDB } from './db.js';
+import authRouter, { authConfig } from './auth.js';
 
 conectarDB();
 
@@ -12,6 +13,8 @@ app.use(express.json());
 
 // Habilito CORS
 app.use(cors());
+
+authConfig();
 
 app.get('/', (req, res) => {
     res.send('Hola Mundo!');
