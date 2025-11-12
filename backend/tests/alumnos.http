@@ -1,0 +1,48 @@
+@url=http://localhost:3000
+
+### Login
+# @name login
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+    "nombre": "LUQU3",
+    "contraseña": "Hola123&"
+}
+
+###
+@token = {{login.response.body.token}}
+
+### Consultar alumnos
+GET {{url}}/alumnos
+Authorization: Bearer {{token}}
+
+### Consultar por un alumno
+GET {{url}}/alumnos/1
+Authorization: Bearer {{token}}
+
+### Crear un alumno
+POST {{url}}/alumnos
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "nombre": "Adriel",
+    "apellido": "Barrios",
+    "dni": "43987576"
+}
+
+### Actualizar un alumno
+PUT {{url}}/alumnos/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "nombre": "Adriel",
+    "apellido": "Barrios",
+    "dni": "43987576"
+}
+
+### Eliminar un alumno
+DELETE {{url}}/alumnos/1
+Authorization: Bearer {{token}}

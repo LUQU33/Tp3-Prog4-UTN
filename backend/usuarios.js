@@ -13,7 +13,7 @@ router.get('/', verificarAutenticacion, async (req, res) => {
     // RECORDAR Eliminar contraseña en la api
     res.json({
         success: true,
-        usuarios: rows.map((u) => ({ ...u, password_hash: undefined })),
+        usuarios: rows.map((u) => ({ ...u, contraseña: undefined })),
     });
 });
 

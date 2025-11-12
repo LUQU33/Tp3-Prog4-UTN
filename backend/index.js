@@ -3,6 +3,7 @@ import cors from 'cors';
 import { conectarDB } from './db.js';
 import usuariosRouter from './usuarios.js';
 import authRouter, { authConfig } from './auth.js'; 
+import alumnosRouter from './alumnos.js';
 
 conectarDB();
 
@@ -23,8 +24,9 @@ app.get('/', (req, res) => {
 });
 
 // Rutas de la API
-app.use('/usuarios', usuariosRouter);
+app.use('/alumnos', alumnosRouter);
 app.use('/auth', authRouter);
+app.use('/usuarios', usuariosRouter);
 
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
