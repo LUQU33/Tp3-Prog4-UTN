@@ -19,7 +19,9 @@ router.get(
     verificarAutenticacion,
     async (req , res) => {
         try {
-            const [rows] = await db.execute('SELECT * FROM materia');
+            const [rows] = await db.execute(
+                'SELECT * FROM materia'
+            );
             res.json({ success: true, alumnos: rows });
         } catch(error) {
             console.error('Error en GET /materias ->', error);
