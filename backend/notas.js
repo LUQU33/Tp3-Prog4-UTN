@@ -39,9 +39,9 @@ router.get(
                 n.nota1, 
                 n.nota2, 
                 n.nota3 
-                FROM notas n 
-                JOIN alumnos a ON n.alumno_id = a.id 
-                JOIN materias m ON n.materia_id = m.id`
+                FROM nota n 
+                JOIN alumno a ON n.alumno_id = a.id 
+                JOIN materia m ON n.materia_id = m.id`
             );
             
             res.json({ success: true, notas: rows })
@@ -72,9 +72,9 @@ router.get(
                 n.nota1, 
                 n.nota2, 
                 n.nota3 
-                FROM notas n 
-                JOIN alumnos a ON n.alumno_id = a.id 
-                JOIN materias m ON n.materia_id = m.id
+                FROM nota n 
+                JOIN alumno a ON n.alumno_id = a.id 
+                JOIN materia m ON n.materia_id = m.id
                 WHERE n.id=?`,
                 [id]
             );
@@ -162,7 +162,7 @@ router.put(
 
 // Borrar un registro de notas
 router.delete(
-    '/',
+    '/:id',
     verificarAutenticacion,
     validarId,
     verificarValidaciones,

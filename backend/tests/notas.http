@@ -1,0 +1,49 @@
+@url=http://localhost:3000
+
+### Login
+# @name login
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+    "nombre": "LUQU3",
+    "contraseña": "Hola123&"
+}
+
+###
+@token = {{login.response.body.token}}
+
+### Consultar todos los registros de notas
+GET {{url}}/notas
+Authorization: Bearer {{token}}
+
+### Consultar por un registro de notas
+GET {{url}}/notas/2
+Authorization: Bearer {{token}}
+
+### Crear un registro de notas
+POST {{url}}/notas
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "alumno_id": 2,
+    "materia_id": 1,
+    "nota1": 9,
+    "nota2": 5.8,
+    "nota3": 7.7
+}
+### Actualizar un registro de notas
+PUT {{url}}/notas/3
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "nota1": 9,
+    "nota2": 6,
+    "nota3": 7.7
+}
+
+### Eliminar un registro de notas
+DELETE {{url}}/notas/4
+Authorization: Bearer {{token}}
