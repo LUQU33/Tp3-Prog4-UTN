@@ -1,0 +1,47 @@
+@url=http://localhost:3000
+
+### Login
+# @name login
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+    "nombre": "LUQU3",
+    "contraseña": "Hola123&"
+}
+
+###
+@token = {{login.response.body.token}}
+
+### Consultar materias
+GET {{url}}/materias
+Authorization: Bearer {{token}}
+
+### Consultar por una materia
+GET {{url}}/materias/1
+Authorization: Bearer {{token}}
+
+### Crear una materia
+POST {{url}}/materias
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "nombre": "Matematica",
+    "codigo": "POLSDA42",
+    "año": 1998
+}
+### Actualizar una materia
+PUT {{url}}/materias/3
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "nombre": "Matematica",
+    "codigo": "PORSDA42",
+    "año": 2000
+}
+
+### Eliminar una materia
+DELETE {{url}}/materias/3
+Authorization: Bearer {{token}}

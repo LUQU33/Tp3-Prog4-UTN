@@ -4,6 +4,7 @@ import { conectarDB } from './db.js';
 import usuariosRouter from './usuarios.js';
 import authRouter, { authConfig } from './auth.js'; 
 import alumnosRouter from './alumnos.js';
+import materiasRouter from './materias.js';
 
 conectarDB();
 
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 // Rutas de la API
 app.use('/alumnos', alumnosRouter);
 app.use('/auth', authRouter);
+app.use('/materias', materiasRouter);
 app.use('/usuarios', usuariosRouter);
 
 app.listen(port, () => {
