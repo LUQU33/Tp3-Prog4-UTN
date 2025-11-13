@@ -22,7 +22,7 @@ authConfig();
 
 // Ruta de bienvenida
 app.get('/', (req, res) => {
-    res.send('Hola Mundo!');
+    res.send('Bienvenido a mi API del TP3 de PROG4!');
 });
 
 // Rutas de la API
