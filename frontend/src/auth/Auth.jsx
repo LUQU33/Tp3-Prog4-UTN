@@ -84,7 +84,14 @@ export const AuthPage = ({ children }) => {
     const { isAuthenticated } = useAuth();
 
     if (!isAuthenticated) {
-        return <h2>Debe iniciar sesión para ver esta página</h2>
+        return (
+            <div className="container mt-4">
+                <div className="alert alert-warning" role="alert">
+                    <h4 className="alert-heading">Acceso Restringido</h4>
+                    <p>Debe iniciar sesión para poder ver esta página.</p>
+                </div>
+            </div>
+        );
     }
 
     return children;
