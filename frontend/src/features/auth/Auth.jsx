@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useState } from "react";
 
 // Contexto para compartir el estado de autenticacion
@@ -27,7 +26,13 @@ export const AuthProvider = ({ children }) => {
             const session = await response.json();
 
             if (!response.ok && response.status === 400){
-                throw new Error(session.error || 'Error de credenciales')
+                // Capturamos el error del backend
+                let errorMessage = session.error || 'Error de credenciales';
+                // Si es un error de express-validator, lo formateamos
+                if (session.errores && Array.isArray(session.errores)) {
+                    errorMessage = session.errores.map((err) => err.msg).join(" ");
+                }
+                throw new Error(errorMessage);
             }
 
             setToken(session.token);
@@ -96,4 +101,3 @@ export const AuthPage = ({ children }) => {
 
     return children;
 }
-

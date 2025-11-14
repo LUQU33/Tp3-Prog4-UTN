@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useAuth } from "../auth/Auth.jsx";
+import { useAuth } from "./Auth";
 
-export const LoginPage = () => {
+export const Login = () => {
     // Obtenemos todo lo necesario del contexto de autenticacion
     const { error, login, isAuthenticated, logout, username } = useAuth();
 

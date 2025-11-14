@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useAuth } from "../auth/Auth";
+import { useAuth } from "./Auth";
 
-export const RegisterPage = () => {
+export const Register = () => {
     const { isAuthenticated } = useAuth();
 
     const [open, setOpen] = useState(false);
@@ -34,9 +34,9 @@ export const RegisterPage = () => {
             let errorMessage = "Error al registrar el usuario.";
             if (data.error) {
             errorMessage = data.error;
-            } else if (data.errors && Array.isArray(data.errors)) {
+            } else if (data.errores && Array.isArray(data.errores)) {
             // Para errores de express-validator
-            errorMessage = data.errors.map((err) => err.msg).join(" ");
+            errorMessage = data.errores.map((err) => err.msg).join(" ");
             }
             throw new Error(errorMessage);
         }
