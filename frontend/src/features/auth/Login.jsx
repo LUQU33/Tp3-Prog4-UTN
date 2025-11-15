@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "./Auth";
+import { VentanaModalBase } from "../../components/ui/BaseVentanaModal";
 
 export const Login = () => {
     // Obtenemos todo lo necesario del contexto de autenticacion
@@ -50,93 +51,63 @@ export const Login = () => {
             Ingresar
         </button>
 
-        <div
-            className={`modal fade ${open ? "show" : ""}`}
-            style={{ display: open ? "block" : "none" }}
-            tabIndex="-1"
-            role="dialog"
-            aria-hidden={!open}
+        <VentanaModalBase
+            show={open}
+            onHide={handleCancel}
+            title="Ingrese usuario y contraseña"
         >
-            <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-                {/* Header del Modal */}
-                <div className="modal-header">
-                <h5 className="modal-title">Ingrese usuario y contraseña</h5>
-                <button
-                    type="button"
-                    className="btn-close"
-                    aria-label="Close"
-                    onClick={handleCancel}
-                ></button>
-                </div>
-
-                {/* Formulario (dentro del Body del Modal) */}
-                <form onSubmit={handleSubmit}>
+            {/* Formulario (dentro del Body del Modal) */}
+            <form onSubmit={handleSubmit}>
                 <div className="modal-body">
-                    
                     {/* Alerta de Error de Bootstrap */}
                     {error && (
-                    <div className="alert alert-danger" role="alert">
-                        {error}
-                    </div>
+                        <div className="alert alert-danger" role="alert">
+                            {error}
+                        </div>
                     )}
 
                     {/* Campo Usuario */}
                     <div className="mb-3">
-                    <label htmlFor="nombre" className="form-label">
-                        Usuario:
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="nombre"
-                        id="nombre"
-                        value={nombre}
-                        onChange={(e) => setNombre(e.target.value)}
-                        autoComplete="username"
-                        required
-                    />
+                        <label htmlFor="nombre" className="form-label">
+                            Usuario:
+                        </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="nombre"
+                            id="nombre"
+                            value={nombre}
+                            onChange={(e) => setNombre(e.target.value)}
+                            autoComplete="username"
+                            required
+                        />
                     </div>
 
                     {/* Campo Contraseña */}
                     <div className="mb-3">
-                    <label htmlFor="contraseña" className="form-label">
-                        Contraseña:
-                    </label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        name="contraseña"
-                        id="contraseña"
-                        value={contraseña}
-                        onChange={(e) => setContraseña(e.target.value)}
-                        autoComplete="current-password"
-                        required
-                    />
+                        <label htmlFor="contraseña" className="form-label">
+                            Contraseña:
+                        </label>
+                        <input
+                            type="password"
+                            className="form-control"
+                            name="contraseña"
+                            id="contraseña"
+                            value={contraseña}
+                            onChange={(e) => setContraseña(e.target.value)}
+                            autoComplete="current-password"
+                            required
+                        />
                     </div>
-
                 </div>
                 
                 {/* Footer del Modal (Botones) */}
                 <div className="modal-footer">
-                    <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={handleCancel}
-                    >
-                    Cancelar
-                    </button>
-                    <button type="submit" className="btn btn-primary">
-                    Ingresar
-                    </button>
+                    <button type="button" className="btn btn-secondary" onClick={handleCancel}>Cancelar</button>
+                    <button type="submit" className="btn btn-primary">Ingresar</button>
                 </div>
-                </form>
-            </div>
-            </div>
-        </div>
-
-        {/* Backdrop (fondo oscuro) que se muestra si el modal está abierto */}
-        {open && <div className="modal-backdrop fade show"></div>}
+            </form>
+        </VentanaModalBase>
         </>
     );
 }
