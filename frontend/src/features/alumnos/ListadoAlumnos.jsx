@@ -18,7 +18,7 @@ export const ListadoAlumnos = ({ alumnos }) => {
                     {alumnos.map((a) => {
                         return (
                         <tr key={a.id}>
-                            <td className="text-center">{a.nombre}</td>
+                            <td>{a.nombre}</td>
                             <td className="text-center">{a.apellido}</td>
                             <td className="text-center">{a.DNI}</td>
                         </tr>

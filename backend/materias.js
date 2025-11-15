@@ -22,7 +22,7 @@ router.get(
             const [rows] = await db.execute(
                 'SELECT * FROM materia'
             );
-            res.json({ success: true, alumnos: rows });
+            res.json({ success: true, materias: rows });
         } catch(error) {
             console.error('Error en GET /materias ->', error);
             res.status(500).json({ success: false, error: 'Error del servidor' });
