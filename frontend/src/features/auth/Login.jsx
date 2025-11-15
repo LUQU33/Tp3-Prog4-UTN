@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "./Auth";
-import { VentanaModalBase } from "../../components/ui/BaseVentanaModal";
+import { BaseVentanaModal } from "../../components/ui/BaseVentanaModal";
 
 export const Login = () => {
     // Obtenemos todo lo necesario del contexto de autenticacion
@@ -51,7 +51,7 @@ export const Login = () => {
             Ingresar
         </button>
 
-        <VentanaModalBase
+        <BaseVentanaModal
             show={open}
             onHide={handleCancel}
             title="Ingrese usuario y contraseña"
@@ -107,7 +107,7 @@ export const Login = () => {
                     <button type="submit" className="btn btn-primary">Ingresar</button>
                 </div>
             </form>
-        </VentanaModalBase>
+        </BaseVentanaModal>
         </>
     );
 }

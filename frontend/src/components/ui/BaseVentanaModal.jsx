@@ -1,6 +1,6 @@
 import { Button } from './Button';
 
-export const VentanaModalBase = ({ 
+export const BaseVentanaModal = ({ 
     show, 
     onHide, 
     title, 

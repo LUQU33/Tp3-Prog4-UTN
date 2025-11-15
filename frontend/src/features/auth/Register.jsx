@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "./Auth";
-import { VentanaModalBase } from "../../components/ui/BaseVentanaModal";
+import { BaseVentanaModal } from "../../components/ui/BaseVentanaModal";
 
 export const Register = () => {
     const { isAuthenticated } = useAuth();
@@ -81,7 +81,7 @@ export const Register = () => {
             Registrarse
         </button>
 
-        <VentanaModalBase
+        <BaseVentanaModal
             show={open}
             onHide={handleCancel}
             title="Crear nueva cuenta"
@@ -165,7 +165,7 @@ export const Register = () => {
                     <button type="submit" className="btn btn-primary">Crear Cuenta</button>
                 </div>
             </form>
-        </VentanaModalBase>
+        </BaseVentanaModal>
         </>
     );
 };

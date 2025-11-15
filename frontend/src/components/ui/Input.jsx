@@ -3,7 +3,8 @@ export const Input = ({
     type = "text", 
     name, 
     value, 
-    onChange 
+    onChange,
+    ...rest
 }) => {
     return (
         <div className="mb-3">
@@ -19,6 +20,7 @@ export const Input = ({
                 value={value}
                 onChange={onChange}
                 className="form-control"
+                {...rest}
             />
         </div>
     )
