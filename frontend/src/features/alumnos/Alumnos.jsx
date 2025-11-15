@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ListadoAlumnos } from "./ListadoAlumnos";
 import { useAuth } from "../auth/Auth";
+
 // Componentes
 import { Button } from "../../components/ui/Button";
 

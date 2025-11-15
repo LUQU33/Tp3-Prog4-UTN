@@ -1,6 +1,10 @@
 import { Button } from "../../components/ui/Button";
 
-export const ListadoAlumnos = ({ alumnos, onEdit, onDelete }) => {
+export const ListadoAlumnos = ({ 
+    alumnos, 
+    onEdit, 
+    onDelete 
+}) => {
     if (!alumnos || alumnos.length === 0){
         return <p className='text-center'>No hay Alumnos disponibles</p>
     }

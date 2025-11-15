@@ -2,14 +2,14 @@ import { useState } from "react";
 import { Button } from "../../components/ui/Button";
 import { Input } from "../../components/ui/Input";
 
-export const AgregarAlumno = ({
+export const AgregarMateria = ({
     onConfirmAdd,
     onClose
 }) => {
     const [formData, setFormData] = useState({
         nombre: '',
-        apellido: '',
-        dni: ''
+        codigo: '',
+        año: 0
     });
 
     const handleChange = (e) => {
@@ -22,8 +22,8 @@ export const AgregarAlumno = ({
         // Preparar datos para enviar a la API
         const dataToSend = {
             nombre: formData.nombre,
-            apellido: formData.apellido,
-            dni: formData.dni
+            codigo: formData.codigo,
+            año: formData.año
         };
         onConfirmAdd(dataToSend);
     };
@@ -39,23 +39,23 @@ export const AgregarAlumno = ({
                     required
                 />
                 <Input
-                    label="Apellido"
-                    name="apellido"
-                    value={formData.apellido}
+                    label="Codigo"
+                    name="codigo"
+                    value={formData.codigo}
                     onChange={handleChange}
                     required
                 />
                 <Input
-                    label="DNI"
-                    name="dni"
-                    value={formData.dni}
+                    label="Año"
+                    name="año"
+                    value={formData.año}
                     onChange={handleChange}
                     required
                 />
             </div>
             <div className="modal-footer">
                 <Button type="button" variant="secondary" onClick={onClose}>Cancelar</Button>
-                <Button type="submit" variant="primary">Agregar Alumno</Button>
+                <Button type="submit" variant="primary">AgregarMateria</Button>
             </div>
         </form>
     )
